@@ -10,7 +10,7 @@
     - [Gitlab Flow](#gitlab-flow)
     - [Trunk-based development](#trunk-based-development)
 - [Choose the best git branching strategy](#how-to-choose-the-best-branching-strategy)
-- 
+- [Our current strategy & the problem of it](#whats-our)
 
 ## 1. Before we begin
 
