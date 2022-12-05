@@ -6,6 +6,11 @@
     - [What is git](#12-what-is-git)
 - [Git strategy](#git-strategy)
     - [GitFlow](#git-flow)
+    - [Github Flow](#github-flow)
+    - [Gitlab Flow](#gitlab-flow)
+    - [Trunk-based development](#trunk-based-development)
+- [Choose the best git branching strategy](#how-to-choose-the-best-branching-strategy)
+- 
 
 ## 1. Before we begin
 
@@ -193,6 +198,40 @@ However, GitFlow, as previously mentioned, is not suitable when wanting to imple
 | Products that are demanding for product quality and have a long maintenance cycle for released versions, such as 2B basic platform products | Large | Moderate | Git-Flow |
 
 
+
+## **What's our?**
+
+### ***Normal case***
+![alt text](res/images/ourstrategy.png "Our strategy")
+<figcaption align = "center"><b>Fig.4 - Our strategy</b></figcaption>
+
+- If any member have a merge request, they first need to merge the central branch into their own branch first. Then create merge request to prevent merge confict.
+
+- All branch (features & bugs) are merged into the central line. The a specific build version will be built here
+- After a specific built version has been released, a new branch will be created(5.0.25(1257)).
+
+&emsp;
+
+### ***Normal case with hot fix***
+![alt text](res/images/ourstrategywithhotfix.png "Our strategy")
+<figcaption align = "center"><b>Fig.4 - Our strategy with hotfix</b></figcaption>
+
+- From the current released branch, create a new branch to implement the hotfix, merge the hotfix back to the released branch. Build and release the hotfix. Then merge the released branch into central branch to take the hotfix code.
+
+&emsp;
+
+### ***Abnormal case***
+![alt text](res/images/ourstrategywithpickfeature.png "Our strategy")
+<figcaption align = "center"><b>Fig.4 - Our strategy with hotfix</b></figcaption>
+
+- Create a new branch and add all the code from the feature need to be picked. Then merge it into the new release build.
+
+&emsp;
+
+### ***What is the disadvantaged?***
+`
+We can not pick a new feature from the branch that implemented that feature because this branch now have the code of other branch (Since the develop branch was merged back into the feature branch)
+`
 
 #### **Note:**
 
