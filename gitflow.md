@@ -10,7 +10,7 @@
     - [Gitlab Flow](#gitlab-flow)
     - [Trunk-based development](#trunk-based-development)
 - [Choose the best git branching strategy](#how-to-choose-the-best-branching-strategy)
-- [Our current strategy & the problem of it](#whats-our)
+- [Our current strategy & the problems of it](#whats-our)
 
 ## 1. Before we begin
 
@@ -82,6 +82,59 @@ This branching strategy consists of the following branches:
 - Hotfix: Also helps prepare for a release but unlike release branches, hotfix branches arise from a bug that has been discovered and must be resolved; it enables developers to keep working on their own changes on the develop branch while the bug is being fixed.
 
 The main and develop branches are considered to be the main branches, with an infinite lifetime, while the rest are supporting branches that are meant to aid parallel development among developers, usually short-lived.
+
+<details>
+<summary>See more detail here</summary>
+    
+#### ***How it works:***
+- Develop and main branches
+
+    Instead of a single main branch, this workflow uses two branches to record the history of the project. The main branch stores the official release history, and the develop branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number.
+
+    Develop branch will contain the complete history of the project, whereas main will contain an abridged version. Other developers should now clone the central repository and create a tracking branch for develop.
+
+- Feature branches
+
+    Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
+
+    Feature branches are generally created off to the latest develop branch.
+
+    When you’re done with the development work on the feature, the next step is to merge the feature_branch into develop.
+
+- Release branches
+
+    Once develop has acquired enough features for a release (or a predetermined release date is approaching), you fork a release branch off of develop. Creating this branch starts the next release cycle, so no new features can be added after this point—only bug fixes, documentation generation, and other release-oriented tasks should go in this branch. Once it's ready to ship, the release branch gets merged into main and tagged with a version number. In addition, it should be merged back into develop, which may have progressed since the release was initiated.
+
+    Once the release is ready to ship, it will get merged it into main and develop, then the release branch will be deleted. It’s important to merge back into develop because critical updates may have been added to the release branch and they need to be accessible to new features. If your organization stresses code review, this would be an ideal place for a pull request.
+
+    ![alt text](res/images/gitflow_release.svg "Title")
+    <figcaption align = "center"><b>Git flow release</b></figcaption>
+
+- Hotfix branches
+
+    Maintenance or “hotfix” branches are used to quickly patch production releases. Hotfix branches are a lot like release branches and feature branches except they're based on main instead of develop. This is the only branch that should fork directly off of main. As soon as the fix is complete, it should be merged into both main and develop (or the current release branch), and main should be tagged with an updated version number.
+    
+    Having a dedicated line of development for bug fixes lets your team address issues without interrupting the rest of the workflow or waiting for the next release cycle. You can think of maintenance branches as ad hoc release branches that work directly with main
+
+    ![alt text](res/images/gitflow_hotfix.svg "Title")
+    <figcaption align = "center"><b>Git flow hotfix</b></figcaption>
+
+- Summary
+
+    The overall flow of Gitflow is:
+
+    1. A develop branch is created from main
+    2. A release branch is created from develop
+    3. Feature branches are created from develop
+    4. When a feature is complete it is merged into the develop branch
+    5. When the release branch is done it is merged into develop and main
+    6. If an issue in main is detected a hotfix branch is created from main
+    7. Once the hotfix is complete it is merged to both develop and main
+
+    
+    
+</details>
+&emsp;
 
 #### ***Visialize***
 
@@ -172,7 +225,8 @@ Trunk-based development (TBD) is a branching model for software development wher
 &emsp;
 
 #### ***Visualize***
-![alt text](res/images/strategy1.png "Title")
+
+![alt text](res/images/trunk-based-development-branching-strategy.png "Title")
 <figcaption align = "center"><b>Fig.4 - Git strategy 1: Trunk-based development</b></figcaption>
 
 #### ***Pros & cons***
@@ -233,6 +287,10 @@ However, GitFlow, as previously mentioned, is not suitable when wanting to imple
 We can not pick a new feature from the branch that implemented that feature because this branch now have the code of other branch (Since the develop branch was merged back into the feature branch)
 `
 
+### ***What's others?***
+![alt text](res/images/strategy1.png "Title")
+<figcaption align = "center"><b>Fig.4 - Git strategy 1: Trunk-based development</b></figcaption>
+
 #### **Note:**
 
 master is the main branch. Contain all newest fixes and features.
@@ -286,3 +344,7 @@ Once executed our Git history will look like:
            e - f - g Feature
 The f commit has been successfully picked into the main branch
 
+
+
+## *Other topic*
+1. Forking workflow (How Github Fork work)
