@@ -62,17 +62,17 @@ Git thinks of its data more like a series of snapshots of a miniature filesystem
 
 &emsp;
 
-## Git Strategy
+## **2. Git Strategy**
 
 [comment]: <> (__________________________ )
 [comment]: <> (|                         |)
 [comment]: <> (|        Git Flow         |)
 [comment]: <> (|_________________________|)
 
-### GitFlow
+### **2.1 GitFlow**
 > https://www.flagship.io/git-branching-strategies/
 
-#### ***What is it?***
+#### **2.1.1 What is it?**
 This branching strategy consists of the following branches:
 
 - Master
@@ -86,7 +86,7 @@ The main and develop branches are considered to be the main branches, with an in
 <details>
 <summary>See more detail here</summary>
     
-#### ***How it works:***
+##### **How it works:**
 - Develop and main branches
 
     Instead of a single main branch, this workflow uses two branches to record the history of the project. The main branch stores the official release history, and the develop branch serves as an integration branch for features. It's also convenient to tag all commits in the main branch with a version number.
@@ -136,12 +136,12 @@ The main and develop branches are considered to be the main branches, with an in
 </details>
 &emsp;
 
-#### ***Visialize***
+#### **2.1.2Visialize**
 
 ![alt text](res/images/gitflow.png "Title")
 <figcaption align = "center"><b>Fig.4 - Git strategy 1: GitFlow</b></figcaption>
 
-#### ***Pros & cons***
+#### **2.1.3 Pros & cons**
 Pros
 - Allows for parallel development to protect the production
 - The various types of branches make it easier for developers to organize their work
@@ -166,21 +166,27 @@ Cons
 [comment]: <> (|                         |)
 [comment]: <> (|       Github Flow       |)
 [comment]: <> (|_________________________|)
-### **Github Flow**
-#### ***What is it?***
+### **2.2 Github Flow**
+#### **2.2.1 What is it?**
 GitHub Flow is a simpler alternative to GitFlow ideal for smaller teams as they don’t need to manage multiple versions.
 
-#### ***Visualize***
+<details>
+    <summary>See more detail here</summary>
+    
+- Unlike GitFlow, this model doesn’t have release branches. You start off with the main branch then developers create branches, feature branches that stem directly from the master, to isolate their work which are then merged back into main. The feature branch is then deleted.
+
+- The main idea behind this model is keeping the master code in a constant deployable state and hence can support continuous integration and continuous delivery processes.
+    
+</details>
+&emsp;
+
+#### **2.2.2 Visualize**
 ![alt text](res/images/githubflow.png "Title")
-<figcaption align = "center"><b>Fig.4 - Git strategy 1: Github Flow</b></figcaption>
+<figcaption align = "center"><b>Git strategy 2: Github Flow</b></figcaption>
 
 &emsp;
 
-Unlike GitFlow, this model doesn’t have release branches. You start off with the main branch then developers create branches, feature branches that stem directly from the master, to isolate their work which are then merged back into main. The feature branch is then deleted.
-
-The main idea behind this model is keeping the master code in a constant deployable state and hence can support continuous integration and continuous delivery processes.
-
-#### ***Pros & cons***
+#### **2.2.3 Pros & cons**
 Pros:
 - Github Flow focuses on Agile principles and so it is a fast and streamlined branching strategy with short production cycles and frequent releases.
 - This strategy also allows for fast feedback loops so that teams can quickly identify issues and resolve them.
@@ -191,13 +197,13 @@ Cons:
 - The lack of development branches makes this strategy more susceptible to bugs and so can lead to an unstable production code if branches are not properly tested before merging with the master-release preparation and bug fixes happen in this branch. The master branch, as a result, can become cluttered more easily as it serves as both a production and development branch.
 - This model is more suited to small teams and hence, as teams grow merge conflicts can occur as everyone is merging to the same branch and there is a lack of transparency meaning developers cannot see what other developers are working on.
 
-### GitLab Flow
-#### ***What is it?***
+### **2.3 GitLab Flow**
+#### **2.3.1 What is it?**
 GitLab Flow is a simpler alternative to GitFlow that combines feature-driven development and feature branching with issue tracking.
 
 While GitHub Flow assumes that you can deploy into production whenever you merge a feature branch into the master, GitLab Flow seeks to resolve that issue by allowing the code to pass through internal environments before it reaches production, as seen in the image below.
 
-#### ***Visualize***
+#### **2.3.2 Visualize**
 ![alt text](res/images/gitlabflow.png "Title")
 <figcaption align = "center"><b>Fig.4 - Git strategy 1: Trunk-based development</b></figcaption>
 
@@ -208,9 +214,9 @@ While GitHub Flow assumes that you can deploy into production whenever you merge
 [comment]: <> (| Trunk-based development |)
 [comment]: <> (|_________________________|)
 
-### **Trunk-based development**
+### **2.4 Trunk-based development**
 
-#### ***What is it?***
+#### **2.4.1 What is it?**
 
 Trunk-based development is a branching strategy that in fact requires no branches but instead, developers integrate their changes into a shared trunk at least once a day. This shared trunk should be ready for release anytime.
 
@@ -224,18 +230,20 @@ Trunk-based development (TBD) is a branching model for software development wher
 
 &emsp;
 
-#### ***Visualize***
+#### **2.4.2 Visualize**
 
 ![alt text](res/images/trunk-based-development-branching-strategy.png "Title")
-<figcaption align = "center"><b>Fig.4 - Git strategy 1: Trunk-based development</b></figcaption>
+<figcaption align = "center"><b>Git strategy 4: Trunk-based development (Scale)</b></figcaption>
 
-#### ***Pros & cons***
+#### **2.4.3 Pros & cons**
 Pros:
 - It enhances collaboration as developers have better visibility over what changes other developers are making as commits are made directly into the trunk without the need for branches.
 - Trunk-based development paves the way for continuous integration as the trunk is kept constantly updated.
 
 Cons:
 - Because trunk-based development does not require branches, this eliminates the stress of long-lived branches and hence, merge conflicts or the so-called ‘merge hell’ as developers are pushing small changes much more often. This also makes it easier to resolve any conflicts that may arise.
+
+&emsp;
 
 ## **How to choose the best branching strategy**
 
@@ -253,20 +261,22 @@ However, GitFlow, as previously mentioned, is not suitable when wanting to imple
 
 
 
-## **What's our?**
+## **3. What's our?**
 
-### ***Normal case***
+### **3.1 Use case**
+
+#### **3.1.1 Normal case with hot fix**
 ![alt text](res/images/ourstrategy.png "Our strategy")
-<figcaption align = "center"><b>Fig.4 - Our strategy</b></figcaption>
+<figcaption align = "center"><b>Our strategy</b></figcaption>
 
-- If any member have a merge request, they first need to merge the central branch into their own branch first. Then create merge request to prevent merge confict.
+- If any member have a merge request, they first need to merge the central branch into their own branch, resolve all the merge conflick; then create merge request.
 
-- All branch (features & bugs) are merged into the central line. The a specific build version will be built here
+- All branch (features & bugs) are merged into the central line (`develop`). The a specific build version will be built here
 - After a specific built version has been released, a new branch will be created(5.0.25(1257)).
 
 &emsp;
 
-### ***Normal case with hot fix***
+#### **3.1.2 Normal case with hot fix**
 ![alt text](res/images/ourstrategywithhotfix.png "Our strategy")
 <figcaption align = "center"><b>Fig.4 - Our strategy with hotfix</b></figcaption>
 
@@ -274,7 +284,7 @@ However, GitFlow, as previously mentioned, is not suitable when wanting to imple
 
 &emsp;
 
-### ***Abnormal case***
+#### **3.1.3 Abnormal case**
 ![alt text](res/images/ourstrategywithpickfeature.png "Our strategy")
 <figcaption align = "center"><b>Fig.4 - Our strategy with hotfix</b></figcaption>
 
@@ -282,14 +292,33 @@ However, GitFlow, as previously mentioned, is not suitable when wanting to imple
 
 &emsp;
 
-### ***What is the disadvantaged?***
+### **3.2 What is the disadvantaged?**
 `
 We can not pick a new feature from the branch that implemented that feature because this branch now have the code of other branch (Since the develop branch was merged back into the feature branch)
 `
 
-### ***What's others?***
+
+<font size="5"> HOW OUR COMPANY GOING </font>
+
+- Have a plan to release but it's just a plan (Don't put trust on it).
+- Define a list of features for the next release. But the deadline can be delay and the next release can become a the next small release (Not all the feature in the release note be used to publish).
+
+![alt text](res/images/ourhard1.png "Title")
+<figcaption align = "center"><b>Our hard 1</b></figcaption>
+
+Plan: The next release rl.2 contains:
+- fea.1.rl.2
+- fea.2.rl.2
+
+Change request: rl.2 only contain fea.2.rl.2
+
+Ask: <font size = "7"> How? </font>
+
+
+
+### **3.3 What's others?**
 ![alt text](res/images/strategy1.png "Title")
-<figcaption align = "center"><b>Fig.4 - Git strategy 1: Trunk-based development</b></figcaption>
+<figcaption align = "center"><b>Git strategy 5: Trunk-based development Scale (Custom)</b></figcaption>
 
 #### **Note:**
 
@@ -302,7 +331,9 @@ With hot fix:
 Hot fix will take the started point from the master branch. Where the Mxxx branch start. Then when the fix is finished. It will be merged into master branch. Then use cherry-pick to pick the fix code into the Mxxx branch.
 
 
-///Create demo for this strategy
+
+[comment]: <> (Create demo for this strategy)
+
 
 
 ![alt text](res/images/cherry-pick.png "Title")
@@ -343,6 +374,7 @@ Once executed our Git history will look like:
          \
            e - f - g Feature
 The f commit has been successfully picked into the main branch
+
 
 
 
