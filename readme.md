@@ -314,6 +314,9 @@ Change request: rl.2 only contain fea.2.rl.2
 
 Ask: <font size = "7"> How? </font>
 
+> Cherry-pick all commits in fea.2.rl.2?
+
+> Don't merge the fea.1.rl.2 into develop until the next release comes?
 
 
 ### **3.3 What's others?**
